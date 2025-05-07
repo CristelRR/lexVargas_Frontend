@@ -78,6 +78,10 @@ export class ExpedienteComponent implements OnInit {
 
   ngOnInit() {
   this.idExpediente = +this.activatedRoute.snapshot.paramMap.get('idExpediente')!;
+  if (!this.idExpediente || isNaN(this.idExpediente)) {
+    console.error('ID de expediente no válido');
+    return;
+  }
   
   // Inicializar las categorías y subcategorías
   this.categoriaSeleccionada = null; // Asegúrate de que no haya una categoría seleccionada inicialmente
@@ -118,17 +122,24 @@ export class ExpedienteComponent implements OnInit {
       return;
     }
   
-    // Asegurarse de que idExpedienteFK está asignado
-    this.nuevaParte.idExpedienteFK = this.idExpediente;
+    const parteData = {
+      tipoParte: this.nuevaParte.tipoParte,
+      parteData: { // 👈 CAMBIO AQUÍ (antes era "datos")
+        idExpedienteFK: this.idExpediente,
+        nombreCompleto: this.nuevaParte.nombreCompleto,
+        identificacionOficial: this.nuevaParte.identificacionOficial,
+        domicilio: this.nuevaParte.domicilio,
+        telefono: this.nuevaParte.telefono,
+        correo: this.nuevaParte.correo,
+        representanteLegalNombre: this.nuevaParte.representanteLegalNombre,
+        relacionCaso: 'Principal',
+        numeroLicencia: '',
+        representanteLegalTelefono: '',
+        representanteLegalCorreo: ''
+      }
+    };
   
-    // Convertir a string si es necesario
-    const idExpedienteStr = this.idExpediente.toString();
-  
-    this.expedienteService.agregarParte(idExpedienteStr, {
-      demandantes: this.nuevaParte.tipoParte === 'Demandante' ? [this.nuevaParte] : [],
-      demandados: this.nuevaParte.tipoParte === 'Demandado' ? [this.nuevaParte] : [],
-      terceros: this.nuevaParte.tipoParte === 'Tercero' ? [this.nuevaParte] : []
-    }).subscribe({
+    this.expedienteService.agregarParte(this.idExpediente, parteData).subscribe({
       next: () => {
         alert('Parte agregada exitosamente.');
         this.resetFormularioParte();
@@ -136,10 +147,11 @@ export class ExpedienteComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error al agregar parte:', err);
-        alert('Error al agregar parte');
+        alert(`Error al agregar parte: ${err.error?.message || err.message}`);
       }
     });
   }
+  
   
   resetFormularioParte() {
     this.nuevaParte = {
@@ -149,26 +161,42 @@ export class ExpedienteComponent implements OnInit {
       domicilio: '',
       telefono: '',
       correo: '',
-      representanteLegalNombre: ''
-    }}
-    
+      representanteLegalNombre: '',
+      relacionCaso: 'Principal',
+      fechaNacimiento: '',
+      numeroLicencia: '',
+      representanteLegalTelefono: '',
+      representanteLegalCorreo: ''
+    };
+  }
   
 
-    guardarPartes() {
-      // Convertir idExpediente a string si es necesario
-      const idExpedienteStr = this.idExpediente.toString();
-      
-      this.expedienteService.agregarParte(idExpedienteStr, { 
-        demandantes: this.demandantes, 
-        demandados: this.demandados, 
-        terceros: this.terceros 
-      }).subscribe({
-        next: () => alert('Partes guardadas exitosamente.'),
-        error: (err) => console.error('Error al guardar partes:', err),
+  guardarPartes() {
+    const idExpedienteStr = this.idExpediente.toString();
+  
+    const todasLasPartes = [
+      ...this.demandantes.map(parte => ({
+        tipoParte: 'Demandante',
+        parteData: { ...parte, idExpedienteFK: this.idExpediente }
+      })),
+      ...this.demandados.map(parte => ({
+        tipoParte: 'Demandado',
+        parteData: { ...parte, idExpedienteFK: this.idExpediente }
+      })),
+      ...this.terceros.map(parte => ({
+        tipoParte: 'Tercero',
+        parteData: { ...parte, idExpedienteFK: this.idExpediente }
+      }))
+    ];
+  
+    todasLasPartes.forEach(parte => {
+      this.expedienteService.agregarParte(idExpedienteStr, parte).subscribe({
+        next: () => console.log(`Parte ${parte.tipoParte} guardada.`),
+        error: (err) => console.error(`Error al guardar parte ${parte.tipoParte}:`, err),
       });
-    }
-  
-  
+    });
+  }
+
   getInformacionGeneral() {
     this.expedienteService.getInformacionGeneral(this.idExpediente).subscribe(
       (data) => {
@@ -181,7 +209,7 @@ export class ExpedienteComponent implements OnInit {
         if (data.estado) {
           data.estado = this.formatearEstado(data.estado);
         }
-
+        console.error('No se recibieron datos del expediente');
         this.expediente = data;
       },
       (error) => {
@@ -195,17 +223,19 @@ export class ExpedienteComponent implements OnInit {
   getPartesRelacionadas() {
     this.expedienteService.getPartesPorExpediente(this.idExpediente)
       .subscribe({
-        next: (data) => {
-          // Asumiendo que el backend devuelve un objeto con las partes separadas
-          this.demandantes = data.demandantes || [];
-          this.demandados = data.demandados || [];
-          this.terceros = data.terceros || [];
+        next: (respuesta: any) => {
+          this.demandantes = respuesta.demandantes || [];
+          this.demandados = respuesta.demandados || [];
+          this.terceros = respuesta.terceros || [];
         },
         error: (error) => {
           console.error('Error al cargar partes relacionadas:', error);
         }
       });
   }
+  
+  
+
   // Método para formatear la fecha
   formatearFecha(fecha: string): string {
     return fecha.split('T')[0]; // Extrae solo la parte de la fecha (YYYY-MM-DD)

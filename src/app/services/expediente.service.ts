@@ -23,23 +23,29 @@ export class ExpedienteService {
   }
 
   // Obtener información de las partes relacionadas por número de expediente
-  getPartesPorExpediente(idExpediente: number): Observable<any> {
-    return this.http.get<any>(`${this.URL_API}/partes-expediente/${idExpediente}`);
+  getPartesPorExpediente(idExpediente: number): Observable<{
+    demandantes: any[];
+    demandados: any[];
+    terceros: any[];
+  }> {
+    return this.http.get<{
+      demandantes: any[];
+      demandados: any[];
+      terceros: any[];
+    }>(`${this.URL_API}/partes-expediente/${idExpediente}`);
   }
-
-  agregarParte(idExpediente: string | number, partes: { 
-  demandantes: any[], 
-  demandados: any[], 
-  terceros: any[] 
-}): Observable<any> {
-  // Convertir a número si es string
-  const id = typeof idExpediente === 'string' ? parseInt(idExpediente) : idExpediente;
   
-  return this.http.post<any>(`${this.URL_API}/agregar-parte`, { 
-    idExpediente: id,
-    partes 
-  });
-}
+
+  agregarParte(idExpediente: string | number, parteData: { 
+    tipoParte: string,
+    parteData: any
+  }): Observable<any> {
+    const id = typeof idExpediente === 'string' ? parseInt(idExpediente) : idExpediente;
+  
+    parteData.parteData.idExpedienteFK = id;
+  
+    return this.http.post<any>(`${this.URL_API}/agregar-parte/${id}`, parteData);
+  }
   
   
 }

@@ -103,15 +103,20 @@
               <h4 class="mb-3">Parte Demandante</h4>
               <div *ngIf="demandantes.length > 0; else noDemandantes">
                 <div *ngFor="let demandante of demandantes" class="card parte-card mb-4 shadow-sm">
+          
                   <div class="card-body">
-                    <h5 class="card-title">ID: {{ demandante.idParte }}</h5>
                     <p class="card-text"><strong>Nombre Completo:</strong> {{ demandante.nombreCompleto }}</p>
                     <p class="card-text"><strong>Identificación Oficial:</strong> {{ demandante.identificacionOficial }}</p>
-                    <p class="card-text"><strong>Domicilio:</strong> {{ demandante.domicilio }}</p>
+                    <p class="card-text"><strong>Relación con el Caso:</strong> {{ demandante.relacionCaso }}</p>
+                    <p class="card-text"><strong>Fecha de Nacimiento:</strong> {{ demandante.fechaNacimiento | date: 'dd/MM/yyyy' }}</p>
                     <p class="card-text"><strong>Teléfono:</strong> {{ demandante.telefono }}</p>
                     <p class="card-text"><strong>Correo Electrónico:</strong> {{ demandante.correo }}</p>
-                    <p class="card-text"><strong>Representante Legal:</strong> {{ demandante.representanteLegal }}</p>
-                  </div>
+                    <p *ngIf="demandante.representanteLegalNombre"><strong>Representante Legal:</strong> {{ demandante.representanteLegalNombre }}</p>
+                    <p *ngIf="demandante.representanteLegalTelefono"><strong>Teléfono Representante Legal:</strong> {{ demandante.representanteLegalTelefono }}</p>
+                    <p *ngIf="demandante.representanteLegalCorreo"><strong>Correo Representante Legal:</strong> {{ demandante.representanteLegalCorreo }}</p>
+                    <p class="card-text"><strong>Domicilio:</strong> {{ demandante.domicilio }}</p>
+                </div>
+                
                 </div>
               </div>
               <ng-template #noDemandantes>
@@ -125,14 +130,18 @@
               <div *ngIf="demandados.length > 0; else noDemandados">
                 <div *ngFor="let demandado of demandados" class="card parte-card mb-4 shadow-sm">
                   <div class="card-body">
-                    <h5 class="card-title">ID: {{ demandado.idParte }}</h5>
                     <p class="card-text"><strong>Nombre Completo:</strong> {{ demandado.nombreCompleto }}</p>
                     <p class="card-text"><strong>Identificación Oficial:</strong> {{ demandado.identificacionOficial }}</p>
-                    <p class="card-text"><strong>Domicilio:</strong> {{ demandado.domicilio }}</p>
+                    <p class="card-text"><strong>Relación con el Caso:</strong> {{ demandado.relacionCaso }}</p>
+                    <p class="card-text"><strong>Fecha de Nacimiento:</strong> {{ demandado.fechaNacimiento | date: 'dd/MM/yyyy' }}</p>
                     <p class="card-text"><strong>Teléfono:</strong> {{ demandado.telefono }}</p>
                     <p class="card-text"><strong>Correo Electrónico:</strong> {{ demandado.correo }}</p>
-                    <p class="card-text"><strong>Representante Legal:</strong> {{ demandado.representanteLegalNombre }}</p>
-                  </div>
+                    <p *ngIf="demandado.representanteLegalNombre"><strong>Representante Legal:</strong> {{ demandado.representanteLegalNombre }}</p>
+                    <p *ngIf="demandado.representanteLegalTelefono"><strong>Teléfono Representante Legal:</strong> {{ demandado.representanteLegalTelefono }}</p>
+                    <p *ngIf="demandado.representanteLegalCorreo"><strong>Correo Representante Legal:</strong> {{ demandado.representanteLegalCorreo }}</p>
+                    <p class="card-text"><strong>Domicilio:</strong> {{ demandado.domicilio }}</p>
+                </div>
+                
                 </div>
               </div>
               <ng-template #noDemandados>
@@ -146,13 +155,17 @@
               <div *ngIf="terceros.length > 0; else noTerceros">
                 <div *ngFor="let tercero of terceros" class="card parte-card mb-4 shadow-sm">
                   <div class="card-body">
-                    <h5 class="card-title">ID: {{ tercero.idParte }}</h5>
                     <p class="card-text"><strong>Nombre Completo:</strong> {{ tercero.nombreCompleto }}</p>
                     <p class="card-text"><strong>Identificación Oficial:</strong> {{ tercero.identificacionOficial }}</p>
-                    <p class="card-text"><strong>Domicilio:</strong> {{ tercero.domicilio }}</p>
+                    <p class="card-text"><strong>Relación con el Caso:</strong> {{ tercero.relacionCaso }}</p>
+                    <p class="card-text"><strong>Fecha de Nacimiento:</strong> {{ tercero.fechaNacimiento | date: 'dd/MM/yyyy' }}</p>
                     <p class="card-text"><strong>Teléfono:</strong> {{ tercero.telefono }}</p>
                     <p class="card-text"><strong>Correo Electrónico:</strong> {{ tercero.correo }}</p>
-                  </div>
+                    <p *ngIf="tercero.representanteLegalNombre"><strong>Representante Legal:</strong> {{ tercero.representanteLegalNombre }}</p>
+                    <p *ngIf="tercero.representanteLegalTelefono"><strong>Teléfono Representante Legal:</strong> {{ tercero.representanteLegalTelefono }}</p>
+                    <p *ngIf="tercero.representanteLegalCorreo"><strong>Correo Representante Legal:</strong> {{ tercero.representanteLegalCorreo }}</p>
+                    <p class="card-text"><strong>Domicilio:</strong> {{ tercero.domicilio }}</p>
+                </div>
                 </div>
               </div>
               <ng-template #noTerceros>
@@ -162,8 +175,39 @@
           </div> 
           
           <!-- Formulario para agregar partes -->
+           
           <div class="mt-4">
-            <h4>Agregar Nueva Parte</h4>
+            <!-- Agrega estos campos adicionales en tu formulario -->
+           <h4>Agregar Nueva Parte</h4>
+           <div class="row">
+             <div class="col-md-6 col-12 mb-3">
+               <label for="relacionCaso" class="form-label">Relación con el caso</label>
+               <input id="relacionCaso" [(ngModel)]="nuevaParte.relacionCaso" name="relacionCaso" type="text" class="form-control" value="Principal">
+             </div>
+             <div class="col-md-6 col-12 mb-3">
+               <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+               <input id="fechaNacimiento" [(ngModel)]="nuevaParte.fechaNacimiento" name="fechaNacimiento" type="date" class="form-control">
+             </div>
+           </div>
+           
+           <div class="row" *ngIf="nuevaParte.tipoParte === 'Demandante'">
+             <div class="col-md-6 col-12 mb-3">
+               <label for="numeroLicencia" class="form-label">Número de Licencia</label>
+               <input id="numeroLicencia" [(ngModel)]="nuevaParte.numeroLicencia" name="numeroLicencia" type="text" class="form-control">
+             </div>
+           </div>
+           
+           <div class="row">
+             <div class="col-md-6 col-12 mb-3">
+               <label for="representanteLegalTelefono" class="form-label">Teléfono Representante Legal</label>
+               <input id="representanteLegalTelefono" [(ngModel)]="nuevaParte.representanteLegalTelefono" name="representanteLegalTelefono" type="text" class="form-control">
+             </div>
+             <div class="col-md-6 col-12 mb-3">
+               <label for="representanteLegalCorreo" class="form-label">Correo Representante Legal</label>
+               <input id="representanteLegalCorreo" [(ngModel)]="nuevaParte.representanteLegalCorreo" name="representanteLegalCorreo" type="email" class="form-control">
+             </div>
+           </div>
+            
             <form (ngSubmit)="agregarParte()" #parteForm="ngForm">
               <div class="row">
                 <div class="col-md-6 col-12 mb-3">
@@ -186,6 +230,7 @@
                   <label for="identificacionOficial" class="form-label">Identificación Oficial</label>
                   <input id="identificacionOficial" [(ngModel)]="nuevaParte.identificacionOficial" name="identificacionOficial" type="text" class="form-control" required>
                 </div>
+
                 <div class="col-md-6 col-12 mb-3">
                   <label for="domicilio" class="form-label">Domicilio</label>
                   <input id="domicilio" [(ngModel)]="nuevaParte.domicilio" name="domicilio" type="text" class="form-control" required>
@@ -200,13 +245,6 @@
                 <div class="col-md-6 col-12 mb-3">
                   <label for="correo" class="form-label">Correo Electrónico</label>
                   <input id="correo" [(ngModel)]="nuevaParte.correo" name="correo" type="email" class="form-control">
-                </div>
-              </div>
-              
-              <div class="row">
-                <div class="col-12 mb-3">
-                  <label for="representanteLegalNombre" class="form-label">Representante Legal</label>
-                  <input id="representanteLegalNombre" [(ngModel)]="nuevaParte.representanteLegalNombre" name="representanteLegalNombre" type="text" class="form-control">
                 </div>
               </div>
               
