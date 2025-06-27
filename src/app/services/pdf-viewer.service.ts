@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class PdfViewerService {
 
   //private readonly URL_API = 'http://localhost:3000/expedientes/documento/';
-  private readonly URL_API = 'https://fkgm057s-3000.usw3.devtunnels.ms/expedientes/documento/';
+  private readonly URL_API = 'https://3gwrmhh3-3000.usw3.devtunnels.ms/expedientes/documento/';
 
   constructor(private http: HttpClient) {}
 

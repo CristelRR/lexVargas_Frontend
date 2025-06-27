@@ -11,7 +11,7 @@ export class EmpleadoService {
   constructor(private http: HttpClient) { }
 
   //URL_API = 'http://localhost:3000/empleados/';
-  URL_API = 'https://fkgm057s-3000.usw3.devtunnels.ms/empleados/';
+  URL_API = 'https://3gwrmhh3-3000.usw3.devtunnels.ms/empleados/';
 
   public empleado: Empleado = {
     idEmpleado: 0,

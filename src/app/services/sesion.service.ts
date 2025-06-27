@@ -17,9 +17,9 @@ export class SesionService {
   private sessionExtended = false;
   private verificacionActiva = false;
 
-  private readonly TIEMPO_MOSTRAR_MODAL = 10 * 60 * 1000; // 5 minutos
-  private readonly TIEMPO_CERRAR_SESION = 15 * 60 * 1000; // 7 minutos
-  private readonly TIEMPO_INACTIVIDAD = 5 * 60 * 1000;   // 3 minutos
+  private readonly TIEMPO_MOSTRAR_MODAL = 1 * 60 * 1000; // 5 minutos
+  private readonly TIEMPO_CERRAR_SESION = 1 * 60 * 1000; // 7 minutos
+  private readonly TIEMPO_INACTIVIDAD = 1 * 60 * 1000;   // 3 minutos
 
   constructor(
     private router: Router,
@@ -97,7 +97,7 @@ export class SesionService {
     const token = this.localStorageService.getItem('token');
 
     if (token) {
-      this.http.post<any>('https://fkgm057s-3000.usw3.devtunnels.ms/usuarios/extender-sesion', {}, {
+      this.http.post<any>('https://3gwrmhh3-3000.usw3.devtunnels.ms/usuarios/extender-sesion', {}, {
         headers: { Authorization: `Bearer ${token}` }
       }).subscribe({
         next: (response) => {
@@ -176,7 +176,7 @@ export class SesionService {
           console.warn('⛔ No se respondió al modal tras inactividad. Cerrando sesión...');
           this.cerrarSesion();
         }
-      }, 2 * 60 * 1000); // 2 minutos más
+      }, 1 * 60 * 1000); // 2 minutos más
     }, this.TIEMPO_INACTIVIDAD);
   }
   

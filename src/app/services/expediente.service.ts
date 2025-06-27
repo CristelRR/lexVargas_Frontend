@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ExpedienteService {
-  private URL_API = 'http://localhost:3000/expedienteN';
-  //private URL_API = 'https://fkgm057s-3000.usw3.devtunnels.ms/expedienteN';
+  //private URL_API = 'http://localhost:3000/expedienteN';
+  private URL_API = 'https://3gwrmhh3-3000.usw3.devtunnels.ms/expedienteN';
 
   constructor(private http: HttpClient) { }
 

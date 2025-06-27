@@ -8,7 +8,7 @@ import { Nota } from '../models/notas'; // Aseg√∫rate de crear este modelo si a√
 })
 export class NotaService {
   //private URL_API = 'http://localhost:3000/notas'; // La URL base para las notas
-  private URL_API = 'https://fkgm057s-3000.usw3.devtunnels.ms/notas/';
+  private URL_API = 'https://3gwrmhh3-3000.usw3.devtunnels.ms/notas/';
 
   constructor(private http: HttpClient) { }
 

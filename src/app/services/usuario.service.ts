@@ -16,7 +16,7 @@ export class UsuarioService {
   ) {}
 
   //URL_API = 'http://localhost:3000/usuarios/';
-  URL_API = 'https://fkgm057s-3000.usw3.devtunnels.ms/usuarios/'
+  URL_API = 'https://3gwrmhh3-3000.usw3.devtunnels.ms/usuarios/'
 
   public usuario: Usuario = {
     idUsuario: 0,
