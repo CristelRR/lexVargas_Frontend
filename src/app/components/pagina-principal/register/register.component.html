@@ -62,18 +62,18 @@
             <div class="form-group mb-3">
               <label for="pass" class="form-label">Contraseña</label>
               <div class="input-wrapper">
-                <input [type]="showPassword ? 'text' : 'password'" id="pass" class="form-control"
-                       formControlName="pass" placeholder="••••••••" />
-                <i class="fa toggle-password"
-                   [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
-                   (click)="togglePasswordVisibility()"></i>
+                <input [type]="showPassword ? 'text' : 'password'" id="pass" class="form-control" formControlName="pass"
+                  placeholder="••••••••" />
+                <i class="fa toggle-password" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+                  (click)="togglePasswordVisibility()"></i>
               </div>
 
               <small class="error-message"
                 *ngIf="passwordErrors && (registerForm.get('pass')?.touched || registerForm.get('pass')?.dirty)">
                 <div *ngIf="passwordErrors?.['required']">Este campo es obligatorio.</div>
                 <div *ngIf="passwordErrors?.['minlength']">Mínimo 8 caracteres.</div>
-                <div *ngIf="passwordErrors?.['passwordStrength']">Debe contener al menos 1 mayúscula, 1 minúscula y 1 número.</div>
+                <div *ngIf="passwordErrors?.['passwordStrength']">Debe contener al menos 1 mayúscula, 1 minúscula y 1
+                  número.</div>
               </small>
             </div>
 
@@ -81,12 +81,10 @@
             <div class="form-group mb-3">
               <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
               <div class="input-wrapper">
-                <input [type]="showConfirmPassword ? 'text' : 'password'" id="confirmPassword"
-                       class="form-control" formControlName="confirmPassword"
-                       placeholder="Reingrese la contraseña" />
-                <i class="fa toggle-password"
-                   [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
-                   (click)="toggleConfirmPasswordVisibility()"></i>
+                <input [type]="showConfirmPassword ? 'text' : 'password'" id="confirmPassword" class="form-control"
+                  formControlName="confirmPassword" placeholder="Reingrese la contraseña" />
+                <i class="fa toggle-password" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
+                  (click)="toggleConfirmPasswordVisibility()"></i>
               </div>
 
               <small class="error-message"
@@ -99,13 +97,31 @@
             <div class="form-group mb-3 recaptcha-wrapper">
               <div class="recaptcha-container">
                 <re-captcha (resolved)="resolved($event)"
-                            [siteKey]="'6LemDAArAAAAAHQnA85NNufejIN6awF7v8zS-Cu6'"></re-captcha>
+                  [siteKey]="'6LemDAArAAAAAHQnA85NNufejIN6awF7v8zS-Cu6'"></re-captcha>
               </div>
               <small class="error-message"
                 *ngIf="registerForm.get('recaptcha')?.invalid && (registerForm.get('recaptcha')?.dirty || registerForm.get('recaptcha')?.touched)">
                 Por favor, verifica el reCAPTCHA.
               </small>
             </div>
+
+            <!-- Acepta Aviso de Privacidad -->
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" id="aceptaPrivacidad"
+                formControlName="aceptaPrivacidad" />
+              <label class="form-check-label" for="aviso">
+                Acepto el
+                <a [routerLink]="['/aviso-privacidad']" target="_blank" rel="noopener">
+                  Aviso de Privacidad
+                </a>.
+              </label>
+
+              <small class="error-message" *ngIf="registerForm.get('aceptaPrivacidad')?.invalid &&
+                (registerForm.get('aceptaPrivacidad')?.touched || registerForm.get('aceptaPrivacidad')?.dirty)">
+                Debes aceptar el aviso de privacidad para continuar.
+              </small>
+            </div>
+
 
             <!-- Botón -->
             <button type="submit" class="btn btn-primary btn-submit w-100 mt-3"

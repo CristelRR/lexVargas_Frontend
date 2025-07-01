@@ -17,9 +17,9 @@ export class SesionService {
   private sessionExtended = false;
   private verificacionActiva = false;
 
-  private readonly TIEMPO_MOSTRAR_MODAL = 1 * 60 * 1000; // 5 minutos
-  private readonly TIEMPO_CERRAR_SESION = 1 * 60 * 1000; // 7 minutos
-  private readonly TIEMPO_INACTIVIDAD = 1 * 60 * 1000;   // 3 minutos
+  private readonly TIEMPO_MOSTRAR_MODAL = 5 * 60 * 1000; // 5 minutos
+  private readonly TIEMPO_CERRAR_SESION = 7 * 60 * 1000; // 7 minutos
+  private readonly TIEMPO_INACTIVIDAD = 3 * 60 * 1000;   // 3 minutos
 
   constructor(
     private router: Router,
@@ -97,7 +97,7 @@ export class SesionService {
     const token = this.localStorageService.getItem('token');
 
     if (token) {
-      this.http.post<any>('https://3gwrmhh3-3000.usw3.devtunnels.ms/usuarios/extender-sesion', {}, {
+      this.http.post<any>('https://mj5qrp25-3000.usw3.devtunnels.ms/usuarios/extender-sesion', {}, {
         headers: { Authorization: `Bearer ${token}` }
       }).subscribe({
         next: (response) => {

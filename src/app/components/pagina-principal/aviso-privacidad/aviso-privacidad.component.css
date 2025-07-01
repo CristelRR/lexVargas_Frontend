@@ -1,0 +1,31 @@
+.container.aviso {
+  background-color: #f8f9fa; /* Gris claro */
+  border-radius: 12px;
+  padding: 40px;
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333;
+  max-width: 900px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.container.aviso h1 {
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  color: #001f3f;
+}
+
+.container.aviso p {
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+.container.aviso a {
+  color: #004080;
+  text-decoration: underline;
+}
+
+.container.aviso a:hover {
+  color: #001f3f;
+}

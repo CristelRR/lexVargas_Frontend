@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         [Validators.required, Validators.minLength(8), this.passwordValidator],
       ],
       recaptcha: ['', Validators.required],
+        aceptaPrivacidad: [false, Validators.requiredTrue],
     });
 
     this.twoFactorForm = this.fb.group({

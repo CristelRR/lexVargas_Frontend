@@ -1,0 +1,72 @@
+<div class="wrapper">
+  <app-barra-lateral></app-barra-lateral>
+
+  <div class="main">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg p-0" style="background-color: #001f3f;">
+      <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
+        <a class="navbar-brand ms-3" href="/principal">
+          <img src="logo/logoLexVargasV.png" alt="LexVargas Logo" width="200" class="d-inline-block align-text-top">
+        </a>
+      </div>
+    </nav>
+
+    <!-- Contenido -->
+    <div class="p-3">
+      <app-breadcrumbs></app-breadcrumbs>
+
+      <form [formGroup]="clienteForm" (ngSubmit)="guardarCambios()" class="container mt-4">
+        <h2 class="text-center mb-4">Editar Perfil</h2>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>Nombre</label>
+            <input type="text" class="form-control" formControlName="nombreCliente" [disabled]="true">
+          </div>
+          <div class="col-md-4">
+            <label>Apellido Paterno</label>
+            <input type="text" class="form-control" formControlName="aPCliente" [disabled]="true">
+          </div>
+          <div class="col-md-4">
+            <label>Apellido Materno</label>
+            <input type="text" class="form-control" formControlName="aMCliente" [disabled]="true">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>Correo</label>
+            <input type="email" class="form-control" formControlName="correo">
+            <small class="text-danger" *ngIf="clienteForm.get('correo')?.touched && clienteForm.get('correo')?.invalid">
+              Ingresa un correo válido.
+            </small>
+          </div>
+
+          <div class="col-md-4">
+            <label>Teléfono</label>
+            <input type="text" class="form-control" formControlName="telefono">
+            <small class="text-danger" *ngIf="clienteForm.get('telefono')?.touched && clienteForm.get('telefono')?.invalid">
+              Ingresa un teléfono válido (10 dígitos).
+            </small>
+          </div>
+
+          <div class="col-md-4">
+            <label>Dirección</label>
+            <input type="text" class="form-control" formControlName="direccion">
+            <small class="text-danger" *ngIf="clienteForm.get('direccion')?.touched && clienteForm.get('direccion')?.invalid">
+              Ingresa una dirección válida.
+            </small>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-primary" type="submit" [disabled]="clienteForm.invalid">Guardar Cambios</button>
+        </div>
+
+        <div *ngIf="mensajeExito" class="alert alert-success text-center mt-3">
+          {{ mensajeExito }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

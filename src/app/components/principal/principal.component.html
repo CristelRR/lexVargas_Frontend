@@ -2,16 +2,37 @@
   <app-barra-lateral></app-barra-lateral>
 
   <div class="main">
-    <!-- Barra de navegación con la barra de búsqueda global -->
     <nav class="navbar navbar-expand-lg p-0" style="background-color: #001f3f;">
       <div class="container-fluid p-0 d-flex justify-content-between align-items-center">
+
         <!-- Logo -->
         <a class="navbar-brand ms-3" href="/home">
           <img src="logo/logoLexVargasV.png" alt="LexVargas Logo" width="200" class="d-inline-block align-text-top">
         </a>
 
-        <!-- Reemplaza el formulario de búsqueda antiguo por el componente mejorado -->
-        <app-barra-busqueda-home></app-barra-busqueda-home>
+        <!-- Menú de Usuario -->
+        <div class="dropdown me-4">
+          <button class="btn btn-outline-light dropdown-toggle" type="button" id="perfilDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-user-circle me-1"></i> Mi cuenta
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilDropdown">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/editar-perfil']">
+                <i class="fa fa-user-edit me-2"></i> Editar mis datos
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/login']" (click)="logout()">
+                <i class="fa fa-sign-out-alt me-2"></i> Cerrar sesión
+              </a>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </nav>
 
@@ -32,41 +53,41 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">
-                  <i class="fa-solid fa-clock"></i>    
+                  <i class="fa-solid fa-clock"></i>
                   {{ cita.horaInicio }} - {{ cita.horaFinal }}
                 </h5>
-              
+
                 <div class="info-cita">
                   <div class="dato-cita">
                     <span class="etiqueta">Cliente:</span>
                     <span class="valor">{{ cita.cliente }}</span>
                   </div>
-              
+
                   <div class="dato-cita" *ngIf="usuario.rol === 1 || usuario.rol === 3">
                     <span class="etiqueta">Abogado:</span>
                     <span class="valor">{{ cita.abogado }}</span>
                   </div>
-              
+
                   <div class="dato-cita">
                     <span class="etiqueta">Servicio:</span>
                     <span class="valor">{{ cita.nombreServicio }}</span>
                   </div>
-              
+
                   <div class="dato-cita">
                     <span class="etiqueta">Motivo:</span>
                     <span class="valor">{{ cita.motivo }}</span>
                   </div>
                 </div>
-              
+
                 <button *ngIf="usuario.rol === 2" (click)="atenderCita(cita.idCita)" class="btn btn-primary">
                   Atender
                 </button>
               </div>
-              
+
             </div>
           </div>
         </div>
-        
+
 
         <!-- Mensaje si no hay citas -->
         <div *ngIf="citasHoy.length === 0" class="text-center mt-5">

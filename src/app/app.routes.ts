@@ -11,6 +11,7 @@ import { RecuperacionContraseñaComponent } from './components/pagina-principal/
 import { RestablecerContrasenaComponent } from './components/pagina-principal/restablecer-contrasena/restablecer-contrasena.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { AvisoPrivacidadComponent } from './components/pagina-principal/aviso-privacidad/aviso-privacidad.component';
 
 // Informativas
 import { ConocenosComponent } from './components/pagina-principal/conocenos/conocenos.component';
@@ -51,6 +52,7 @@ import { PaymentRequiredComponent } from './components/pages/payment-required/pa
 // Servicio
 import { NavigationHistoryService } from './services/navigation-history.service';
 import { AuthGuard } from './guards/auth/auth.guard';
+import { EditarPerfilComponent } from './components/pagina-principal/editar-perfil/editar-perfil.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -61,6 +63,7 @@ export const routes: Routes = [
   { path: 'principal-servicios', component: ServiciosComponent, data: { breadcrumb: 'Servicios' } },
   { path: 'principal-contactos', component: ContancosComponent, data: { breadcrumb: 'Contáctanos' } },
   { path: 'mapa-sitio', component: MapaSitioComponent, data: { breadcrumb: 'Mapa del Sitio' } },
+  { path: 'aviso-privacidad', component: AvisoPrivacidadComponent, data: { breadcrumb: 'Aviso de Privacidad' } },
 
   { path: 'login', component: LoginComponent, data: { breadcrumb: 'Iniciar Sesión' } },
   { path: 'register', component: RegisterComponent, data: { breadcrumb: 'Registro' } },
@@ -72,6 +75,7 @@ export const routes: Routes = [
 
   { path: 'principal', component: PrincipalComponent, data: { breadcrumb: 'Panel Principal' }, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, data: { breadcrumb: 'Configuración' }, canActivate: [AuthGuard] },
+  { path: 'editar-perfil', component: EditarPerfilComponent, data: { breadcrumb: 'Editar Perfil' }, canActivate: [AuthGuard] },
 
   { path: 'empleado', component: CrudEmpleadoComponent, data: { breadcrumb: 'Gestión Empleados' }, canActivate: [AuthGuard] },
   { path: 'gestion-cliente', component: CrudClienteComponent, data: { breadcrumb: 'Gestión Clientes' }, canActivate: [AuthGuard] },

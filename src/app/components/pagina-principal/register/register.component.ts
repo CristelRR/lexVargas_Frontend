@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ClienteService } from '../../../services/cliente.service';
 import { Cliente } from '../../../models/cliente';
 
@@ -20,7 +20,8 @@ import { RecaptchaModule } from 'ng-recaptcha';
     FormsModule,
     ReactiveFormsModule,
     NavBarraComponent,
-    RecaptchaModule
+    RecaptchaModule,
+    RouterLink
   ]
 })
 export class RegisterComponent implements OnInit {
@@ -65,7 +66,8 @@ export class RegisterComponent implements OnInit {
       telefono: ['', [Validators.required, this.phoneValidator]],
       pass: ['', [Validators.required, Validators.minLength(8), this.passwordValidator]],
       confirmPassword: ['', Validators.required],
-      recaptcha: ['', Validators.required]
+      recaptcha: ['', Validators.required],
+      aceptaPrivacidad: [false, Validators.requiredTrue]
     }, { validators: this.passwordMatchValidator });
   }
 

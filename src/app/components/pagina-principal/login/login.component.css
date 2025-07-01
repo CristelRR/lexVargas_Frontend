@@ -359,6 +359,22 @@ p {
   animation: fadeIn 0.3s ease-in-out; /* Transición suave */
 }
 
+
+.aviso-privacidad {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.aviso-privacidad a {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.aviso-privacidad a:hover {
+  color: #003366;
+}
+
+
 /* Animación de Fade In */
 @keyframes fadeIn {
   from {
