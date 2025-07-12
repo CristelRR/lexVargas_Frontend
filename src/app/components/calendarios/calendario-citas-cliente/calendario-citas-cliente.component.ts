@@ -91,7 +91,6 @@ export class CalendarioCitasClienteComponent implements OnInit {
   getServiciosPorCitasDeCliente(idCliente: number): void {
     this.citaService.getServiciosPorCitasDeCliente(idCliente).subscribe(
       (res) => {
-        console.log("Servicios obtenidos:", res); // Verificar qué datos llegan
         this.servicios = res;
       },
       (err) => console.error('Error al obtener servicios de las citas del cliente:', err)
@@ -124,10 +123,6 @@ export class CalendarioCitasClienteComponent implements OnInit {
       .filter((cita) => {
         const coincideServicio = !servicioIdFiltro || cita.idServicioFK === servicioIdFiltro;
         const coincideEstado = !this.filtroEstado || cita.estadoCita === this.filtroEstado;
-
-        console.log(`Cita: ${cita.idCita}, Servicio: ${cita.idServicioFK}, Estado: ${cita.estadoCita}`);
-        console.log(`Filtro de servicio: ${servicioIdFiltro}, Filtro de estado: ${this.filtroEstado}`);
-        console.log(`Coincide servicio: ${coincideServicio}, Coincide estado: ${coincideEstado}`);
 
         return coincideServicio && coincideEstado;
       })
@@ -220,7 +215,6 @@ export class CalendarioCitasClienteComponent implements OnInit {
 
     this.citaService.cancelarCita(idCita).subscribe(
         (response) => {
-            console.log('Cita cancelada con éxito:', response);
             // Actualizar la lista de citas después de la cancelación
             this.getCitasByCliente(userId);
         },

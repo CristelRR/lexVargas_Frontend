@@ -38,12 +38,10 @@ export class SeleccionHorasComponent {
       this.horasSeleccionadas[horaCompleta] = true; // Inicializa horas seleccionadas
     }
     this.horasDisponibles = horas;
-    console.log('Horas generadas:', this.horasDisponibles);
   }
 
   guardarHoras(): void {
     const horasGuardadas = Object.keys(this.horasSeleccionadas).filter(hora => this.horasSeleccionadas[hora]);
-    console.log(`Horas seleccionadas para ${this.selectedAbogado.nombreEmpleado} ${this.selectedAbogado.aPEmpleado} ${this.selectedAbogado.aMEmpleado}: ${horasGuardadas.join(', ')}`);
     this.activeModal.close(horasGuardadas);
   }
 }

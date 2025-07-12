@@ -84,7 +84,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   mostrarModalSesionExpirada() {
-    console.log('🔔 Abriendo modal de sesión expirada');
     this.modalService.open(this.modalSesionExpirada, {
       backdrop: 'static',
       keyboard: false,
@@ -148,14 +147,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   login() {
-    console.log('Formulario de login enviado:', this.loginForm.value);
   
     if (this.loginForm.valid && this.captchaResolved) {
       const { email, password, recaptcha } = this.loginForm.value;
   
       this.usuarioService.login(email, password, recaptcha).subscribe(
         (response: any) => {
-          console.log('OTP enviado:', response);
           this.tempEmail = email;
           this.show2FAVerification = true; // Muestra el formulario de OTP en la misma página
         },
@@ -190,11 +187,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   verify2FA() {
     const otp = this.twoFactorForm.value.otp;
-    console.log('Verificando OTP:', otp);
 
     this.usuarioService.verifyOTP(this.tempEmail, otp).subscribe(
       (response: any) => {
-        console.log('OTP verificado, respuesta del servidor:', response);
         this.finalizarLogin(response);
       },
       (error) => {

@@ -39,7 +39,6 @@ export class OtpComponent implements OnInit {
     // Llamamos al servicio para verificar el OTP
     this.usuarioService.verifyOTP(email, otp).subscribe(
       (response: any) => {
-        console.log('OTP verificado:', response);
         this.otpVerified.emit(true);  // Emitir 'true' cuando el OTP es correcto
       },
       (error) => {

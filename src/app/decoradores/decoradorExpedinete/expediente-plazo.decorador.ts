@@ -8,7 +8,6 @@ export class ExpedientePlazoDecorator extends ExpedienteDecoradorBase {
     override crearExpediente(): void {
       const expediente = (this.componente as any).expediente;
       expediente.plazo = new Date(new Date().setDate(new Date().getDate() + 30)).toISOString();
-      console.log('Plazo asignado: 30 días desde hoy.');
   
       super.crearExpediente();
     }

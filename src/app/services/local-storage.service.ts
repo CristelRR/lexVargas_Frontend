@@ -31,7 +31,6 @@ export class LocalStorageService {
 
     if (this.isBrowser()) {
       localStorage.setItem(key, valueToStore);
-      console.log(`localStorage: Se guardó la clave "${key}" con el valor: ${valueToStore}`);
     } else {
       console.warn(`localStorage no está disponible. Guardando en mockStorage la clave: ${key}`);
       this.mockStorage[key] = valueToStore;
@@ -42,7 +41,6 @@ export class LocalStorageService {
   removeItem(key: string): void {
     if (this.isBrowser()) {
       localStorage.removeItem(key);
-      console.log(`localStorage: Se eliminó la clave "${key}".`);
     } else {
       console.warn(`localStorage no está disponible. Eliminando de mockStorage la clave: ${key}`);
       delete this.mockStorage[key];
@@ -53,10 +51,8 @@ export class LocalStorageService {
   clear(): void {
     if (this.isBrowser()) {
       localStorage.clear();
-      console.log('localStorage: Se limpió todo el almacenamiento.');
     } else {
       this.mockStorage = {};
-      console.log('mockStorage: Se limpió todo el almacenamiento.');
     }
   }
 }

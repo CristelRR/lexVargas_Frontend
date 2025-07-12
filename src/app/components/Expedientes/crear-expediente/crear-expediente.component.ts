@@ -121,7 +121,6 @@ export class UploadFileComponent implements ExpedienteComponent{
     this.cargarAbogado();  // Cargar los abogados
     this.cargarExpedientes();
     this.cargarAbogadoLogueado()
-    console.log(this.crearExpediente)
   }
 
   cargarAbogadoLogueado(): void {
@@ -143,7 +142,6 @@ export class UploadFileComponent implements ExpedienteComponent{
             correo: abogado.correo
           };
           
-          console.log('Datos del abogado cargados:', this.AbogadoAsignado);
         },
         (error) => {
           console.error('Error al cargar abogado:', error);
@@ -409,7 +407,6 @@ export class UploadFileComponent implements ExpedienteComponent{
   
     this.uploadFileService.crearExpediente(this.expediente).subscribe({
       next: (response: any) => {
-        console.log('Respuesta del servidor:', response); // Verifica la estructura de datos
         
         // Asegúrate que el objeto tenga las propiedades correctas
         const nuevoExpediente = {

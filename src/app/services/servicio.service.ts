@@ -10,8 +10,8 @@ export class ServicioService {
 
   constructor(private http: HttpClient) { }
 
-  //URL_API = 'http://localhost:3000/servicios/';
-  URL_API = 'https://mj5qrp25-3000.usw3.devtunnels.ms/servicios/';
+  URL_API = 'http://localhost:3000/servicios/';
+  //URL_API = 'https://mj5qrp25-3000.usw3.devtunnels.ms/servicios/';
 
 
   public servicio: Servicio = {

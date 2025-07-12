@@ -23,7 +23,6 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   // Verificar si existe un token y su expiración
   if (exp && Date.now() > parseInt(exp, 10)) {
     // Si la sesión ha expirado
-    console.log('⚠️ Tu sesión ha expirado. Inicia sesión nuevamente.');
     localStorageService.clear();  // Limpiar localStorage usando el servicio
     router.navigate(['/login']);  // Redirigir al login
     return next(req); // Continuamos sin la autorización

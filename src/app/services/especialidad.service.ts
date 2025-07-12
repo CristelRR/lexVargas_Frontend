@@ -9,8 +9,8 @@ export class EspecialidadService {
 
   constructor(private http: HttpClient) { }
 
-  //URL_API = 'http://localhost:3000/especialidades/';
-  URL_API = 'https://mj5qrp25-3000.usw3.devtunnels.ms/especialidades/';
+  URL_API = 'http://localhost:3000/especialidades/';
+  //URL_API = 'https://mj5qrp25-3000.usw3.devtunnels.ms/especialidades/';
 
   public especialidad: Especialidad = {
     idEspecialidad: 0,

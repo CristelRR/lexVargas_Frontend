@@ -47,7 +47,6 @@ export class EditarClienteComponent implements OnInit {
 
     this.clienteService.actualizarCliente(this.cliente).subscribe(
       res => {
-        console.log('Cliente actualizado exitosamente', res);
         this.clienteActualizado.emit(this.cliente); // ✅ Emitimos el cliente actualizado
         this.cerrarModal.emit(); // ✅ Cerramos el modal
       },

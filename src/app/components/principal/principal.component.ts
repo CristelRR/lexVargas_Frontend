@@ -5,7 +5,6 @@ import { ServicioService } from '../../services/servicio.service';
 import { AbogadoCitasStrategy } from '../../patterns/strategies/abogado-citas-strategy';
 import { ClienteCitasStrategy } from '../../patterns/strategies/cliente-citas-strategy';
 import { CitasContext } from '../../patterns/strategies/citas-context';
-import { FechaCita } from '../../models/fechas-citas';
 import { CommonModule, DatePipe, formatDate } from '@angular/common';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { SecretariaCitasStrategy } from '../../patterns/strategies/secretaria-citas-strategy';
@@ -59,7 +58,6 @@ export class PrincipalComponent implements OnInit {
     if (this.usuario.rol === 1) {
       citasContext.setStrategy(
         new SecretariaCitasStrategy(this.citaService, (citas) => {
-          console.log("Datos de citas en el componente:", citas);  // Imprime los datos que llegan al componente
           const citasFiltradas = this.filtrarCitasDelDia(citas);
             this.citasHoy = this.normalizarHorasCitas(citasFiltradas);
             this.loading = false;

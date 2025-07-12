@@ -23,18 +23,15 @@ export class DetalleCitaClienteComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['cita']) {
-      console.log("Cita recibida en el modal:", this.cita); // Verifica si el objeto cita está disponible al cambiar
     }
   }
 
   closeModal(): void {
-    console.log("Cerrando modal"); // Confirmación de cierre del modal
     this.activeModal.close();
   }
 
   cancelarCita(): void {
     if (this.cita?.idCita) {
-      console.log("Emitiendo evento de cancelación para la cita con ID:", this.cita.idCita); // Log del ID de la cita cancelada
       this.onCancelarCita.emit(this.cita.idCita); // Emitir el ID de la cita a cancelar
       this.closeModal(); // Cerrar el modal después de emitir el evento
     } else {

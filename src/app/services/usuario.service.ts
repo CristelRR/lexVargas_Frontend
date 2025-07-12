@@ -15,8 +15,8 @@ export class UsuarioService {
     private localStorageService: LocalStorageService  // Inyecta el servicio de LocalStorage
   ) {}
 
-  //URL_API = 'http://localhost:3000/usuarios/';
-  URL_API = 'https://mj5qrp25-3000.usw3.devtunnels.ms/usuarios/'
+  URL_API = 'http://localhost:3000/usuarios/';
+  //URL_API = 'https://mj5qrp25-3000.usw3.devtunnels.ms/usuarios/'
 
   public usuario: Usuario = {
     idUsuario: 0,
@@ -59,7 +59,6 @@ export class UsuarioService {
   }
 
   restablecerContrasena(token: string, nuevaContrasena: string) {
-    console.log('Enviando datos al backend:', { token, nuevaContrasena });
     return this.http.post(`${this.URL_API}restablecer-contrasena`, {
       token,
       nuevaContrasena,

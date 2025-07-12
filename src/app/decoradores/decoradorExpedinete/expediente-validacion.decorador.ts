@@ -14,7 +14,6 @@ export class ExpedienteValidacionDecorator extends ExpedienteDecoradorBase {
         return;
       }
   
-      console.log('Validación exitosa.');
       super.crearExpediente();
     }
   }

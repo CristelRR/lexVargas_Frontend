@@ -78,7 +78,6 @@ export class EditarEmpleadoComponent implements OnInit {
         }
       );
     } else {
-      console.log('Formulario no válido');
     }
   }  
 

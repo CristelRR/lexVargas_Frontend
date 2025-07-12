@@ -14,12 +14,10 @@ export class SecretariaCitasStrategy implements CitasStrategy<CitaAdaptada> {
       const citas = await lastValueFrom(this.citaService.getCitasBySecretaria());
   
       // Imprime las citas recibidas desde el backend
-      console.log("Citas recibidas desde el backend:", citas);
   
       // Adaptar los datos para el rol de secretaria
       const citasAdaptadas: CitaAdaptada[] = citas.map(cita => {
         // Imprime cada cita antes de la adaptación
-        console.log("Cita antes de la adaptación:", cita);
   
         return {
           idCita: cita.idCita,

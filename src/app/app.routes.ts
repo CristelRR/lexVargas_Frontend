@@ -10,7 +10,6 @@ import { RegisterComponent } from './components/pagina-principal/register/regist
 import { RecuperacionContraseñaComponent } from './components/pagina-principal/recuperacion-contraseña/recuperacion-contraseña.component';
 import { RestablecerContrasenaComponent } from './components/pagina-principal/restablecer-contrasena/restablecer-contrasena.component';
 import { PrincipalComponent } from './components/principal/principal.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { AvisoPrivacidadComponent } from './components/pagina-principal/aviso-privacidad/aviso-privacidad.component';
 
 // Informativas
@@ -53,6 +52,7 @@ import { PaymentRequiredComponent } from './components/pages/payment-required/pa
 import { NavigationHistoryService } from './services/navigation-history.service';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { EditarPerfilComponent } from './components/pagina-principal/editar-perfil/editar-perfil.component';
+import { RoleGuard } from './guards/role.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -73,26 +73,24 @@ export const routes: Routes = [
 
   /** CON INICIO DE SESIÓN */
 
-  { path: 'principal', component: PrincipalComponent, data: { breadcrumb: 'Panel Principal' }, canActivate: [AuthGuard] },
-  { path: 'settings', component: SettingsComponent, data: { breadcrumb: 'Configuración' }, canActivate: [AuthGuard] },
-  { path: 'editar-perfil', component: EditarPerfilComponent, data: { breadcrumb: 'Editar Perfil' }, canActivate: [AuthGuard] },
+  { path: 'principal', component: PrincipalComponent, data: { breadcrumb: 'Panel Principal', roles: [1,2,3] }, canActivate: [AuthGuard,RoleGuard] },
+  { path: 'editar-perfil', component: EditarPerfilComponent, data: { breadcrumb: 'Editar Perfil', roles: [3] }, canActivate: [AuthGuard, RoleGuard] },
 
-  { path: 'empleado', component: CrudEmpleadoComponent, data: { breadcrumb: 'Gestión Empleados' }, canActivate: [AuthGuard] },
-  { path: 'gestion-cliente', component: CrudClienteComponent, data: { breadcrumb: 'Gestión Clientes' }, canActivate: [AuthGuard] },
-  { path: 'gestion-horario', component: GestionHorarioComponent, data: { breadcrumb: 'Gestión Horarios' }, canActivate: [AuthGuard] },
-  { path: 'gestion-pago', component: GestionPagoComponent, data: { breadcrumb: 'Gestión Pagos' }, canActivate: [AuthGuard] },
-  { path: 'gestion-cita', component: GestionCitaComponent, data: { breadcrumb: 'Gestión Citas' },canActivate: [AuthGuard] },
+  { path: 'empleado', component: CrudEmpleadoComponent, data: { breadcrumb: 'Gestión Empleados', roles:[1] }, canActivate: [AuthGuard, RoleGuard] },
+  { path: 'gestion-cliente', component: CrudClienteComponent, data: { breadcrumb: 'Gestión Clientes', roles:[1]}, canActivate: [AuthGuard, RoleGuard] },
+  { path: 'gestion-horario', component: GestionHorarioComponent, data: { breadcrumb: 'Gestión Horarios', roles:[1] }, canActivate: [AuthGuard, RoleGuard] },
+  { path: 'gestion-pago', component: GestionPagoComponent, data: { breadcrumb: 'Gestión Pagos', roles:[1] }, canActivate: [AuthGuard] },
 
-  { path: 'cita', component: SolicitudCitaComponent, data: { breadcrumb: 'Solicitar Cita' }, canActivate: [AuthGuard] },
+  { path: 'cita', component: SolicitudCitaComponent, data: { breadcrumb: 'Solicitar Cita', roles:[3] }, canActivate: [AuthGuard, RoleGuard] },
   { path: 'citasRegistro', component: RegistroCitasComponent, data: { breadcrumb: 'Registro de Citas' }, canActivate: [AuthGuard] },
-  { path: 'calendario-cliente', component: CalendarioCitasClienteComponent, data: { breadcrumb: 'Calendario Cliente' }, canActivate: [AuthGuard] },
-  { path: 'calendario-abogado', component: CalendarioCitasAbogadoComponent, data: { breadcrumb: 'Calendario Abogado' }, canActivate: [AuthGuard] },
-  { path: 'calendario-secretaria', component: CalendarioCitasSecretariaComponent, data: { breadcrumb: 'Calendario Secretaria' }, canActivate: [AuthGuard] },
+  { path: 'calendario-cliente', component: CalendarioCitasClienteComponent, data: { breadcrumb: 'Calendario Cliente', roles:[3] }, canActivate: [AuthGuard, RoleGuard] },
+  { path: 'calendario-abogado', component: CalendarioCitasAbogadoComponent, data: { breadcrumb: 'Calendario Abogado', roles:[2] }, canActivate: [AuthGuard, RoleGuard] },
+  { path: 'calendario-secretaria', component: CalendarioCitasSecretariaComponent, data: { breadcrumb: 'Calendario Secretaria', roles:[1] }, canActivate: [AuthGuard, RoleGuard] },
 
-  { path: 'crear-expediente', component: UploadFileComponent, data: { breadcrumb: 'Crear Expediente' }, canActivate: [AuthGuard] },
-  { path: 'visualizar-expediente', component: VisualizarPdfComponent, data: { breadcrumb: 'Visualizar PDF' }, canActivate: [AuthGuard] },
-  { path: 'historial-expedientes', component: HistorialExpedienteComponent, data: { breadcrumb: 'Historial Expedientes' }, canActivate: [AuthGuard] },
-  { path: 'expediente/:idExpediente', component: ExpedienteComponent, data: { breadcrumb: 'Detalle Expediente' }, canActivate: [AuthGuard] },
+  { path: 'crear-expediente', component: UploadFileComponent, data: { breadcrumb: 'Crear Expediente', roles:[1, 2] }, canActivate: [AuthGuard, RoleGuard] },
+  { path: 'visualizar-expediente', component: VisualizarPdfComponent, data: { breadcrumb: 'Visualizar PDF', roles:[2] }, canActivate: [AuthGuard, RoleGuard] },
+  { path: 'historial-expedientes', component: HistorialExpedienteComponent, data: { breadcrumb: 'Historial Expedientes', roles:[2] }, canActivate: [AuthGuard, RoleGuard] },
+  { path: 'expediente/:idExpediente', component: ExpedienteComponent, data: { breadcrumb: 'Detalle Expediente', roles: [2] }, canActivate: [AuthGuard, RoleGuard] },
 
   { path: 'barra', component: BarraLateralComponent, data: { breadcrumb: 'Barra Lateral' }, canActivate: [AuthGuard] },
   { path: 'navbar', component: NavbarComponent, data: { breadcrumb: 'Navegación' } },

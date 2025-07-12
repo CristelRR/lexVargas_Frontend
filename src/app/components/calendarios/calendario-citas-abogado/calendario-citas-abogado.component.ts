@@ -149,12 +149,10 @@ export class CalendarioCitasAbogadoComponent implements OnInit {
             return coincideServicio && coincideCliente && coincideEstado;
         })
         .map((cita) => {
-            console.log('Procesando cita:', cita); // Imprime cada cita procesada
             
             // Extrae solo la hora (HH:MM) de la cadena ISO
             const horaInicio = cita.horaInicio ? cita.horaInicio.split('T')[1].substring(0, 5) : '';
             const horaFinal = cita.horaFinal ? cita.horaFinal.split('T')[1].substring(0, 5) : '';
-            console.log(`Horario procesado: ${horaInicio} - ${horaFinal}`); // Imprime el horario procesado
             
             return {
                 idCita: cita.idCita,  // Agregar el ID de la cita para identificar cada evento único
@@ -165,7 +163,6 @@ export class CalendarioCitasAbogadoComponent implements OnInit {
                 estadoCita: cita.estadoCita    // Añadir el estado de la cita para aplicar el estilo
             };
         });
-    console.log('Citas filtradas y formateadas:', this.appointments); // Imprime las citas formateadas para el calendario
   }
 
   generarDiasDelMes(): void {
@@ -243,7 +240,6 @@ export class CalendarioCitasAbogadoComponent implements OnInit {
 
     this.citaService.cancelarCita(idCita).subscribe(
         (response) => {
-            console.log('Cita cancelada con éxito:', response);
             // Actualizar la lista de citas después de la cancelación
             this.getCitasByAbogado(userId);
         },

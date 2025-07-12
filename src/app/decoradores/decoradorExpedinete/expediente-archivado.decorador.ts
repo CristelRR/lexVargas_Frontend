@@ -9,7 +9,6 @@ export class ExpedienteArchivadoDecorator extends ExpedienteDecoradorBase {
   override crearExpediente(): void {
     (this.componente as any).expediente.estado = 'Archivado';
     alert('Expediente a sido Archivado.');
-    console.log('Expediente archivado en el decorador.');
     
     super.crearExpediente();
   }

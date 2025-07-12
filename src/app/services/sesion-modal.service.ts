@@ -15,7 +15,6 @@ export class SesionModalService {
   ) {}
 
   openExpiracionSesionModal() {
-    console.log('Abriendo el modal de expiración de sesión...');
     this.modalRef = this._dialog.open(ExpiracionSesionComponent, {
       width: '400px',
       disableClose: true,

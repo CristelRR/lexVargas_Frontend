@@ -23,7 +23,6 @@ export class SendEmailCommand implements ICommand {
         error: (err) => console.error('Error al enviar el correo:', err),
       });
     } else {
-      console.log('El tipo de nota no requiere envío de correo.');
     }
   }
 }

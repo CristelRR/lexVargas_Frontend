@@ -77,7 +77,6 @@ export class VisualizarPdfComponent implements OnInit {
     
     // Temporal: Verificar estructura de datos
     this.uploadFileService.getExpedienteCompleto().subscribe(data => {
-      console.log('Datos de expedientes:', data);
       this.resaltarExpedientesRecientes();
     });
   }
@@ -195,8 +194,6 @@ onWindowScroll(event: Event) {
     this.cd.detectChanges();
     
     // Debug
-    console.log('Scroll position:', currentScrollPosition);
-    console.log('Mostrar botón:', this.mostrarBotonArriba);
   }
 }
 

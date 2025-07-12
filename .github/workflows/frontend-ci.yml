@@ -1,0 +1,33 @@
+name: CI - Frontend Seguridad
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  revisar-frontend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+    - name: 📥 Clonar repositorio
+      uses: actions/checkout@v3
+
+    - name: 🟢 Usar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: 📦 Instalar dependencias de frontend
+      run: npm ci
+
+    - name: 🛡️ Revisión de vulnerabilidades
+      run: npm audit --audit-level=high
+
+    - name: ⚙️ Compilar (build) el frontend
+      run: npm run build

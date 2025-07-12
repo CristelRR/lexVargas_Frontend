@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class DocumentosService {
 
-  //private apiUrl = 'http://localhost:3000/documentos';
-  private apiUrl = 'https://mj5qrp25-3000.usw3.devtunnels.ms/documentos';
+  private apiUrl = 'http://localhost:3000/documentos';
+  //private apiUrl = 'https://mj5qrp25-3000.usw3.devtunnels.ms/documentos';
 
     constructor(private http: HttpClient) {}
 
@@ -22,7 +22,6 @@ export class DocumentosService {
           idSubCategoriaFK: archivo.idSubCategoriaFK || idSubCategoria          
         }))     
       };
-      console.log(payload)
       return this.http.post(url, payload);
     }
     

@@ -36,7 +36,6 @@ export class SesionService {
   iniciarVerificacion(): Promise<boolean> {
     return new Promise((resolve) => {
       if (this.verificacionActiva) {
-        console.log('⏳ Verificación ya activa. Ignorando nueva llamada.');
         return resolve(true);
       }
 
@@ -48,23 +47,19 @@ export class SesionService {
       const expMilis = exp < 9999999999 ? exp * 1000 : exp;
 
       if (Date.now() > expMilis) {
-        console.log('⛔ Sesión expirada. Abriendo modal...');
         this.pedirExtension();
         this.verificacionActiva = false;
         return resolve(false);
       }
 
-      console.log('✅ Sesión activa. Programando verificación...');
       this.iniciarDeteccionInactividad();
 
       this.timeout = setTimeout(() => {
-        console.log('⏰ Han pasado 5 minutos. Mostrando modal...');
         this.pedirExtension();
       }, this.TIEMPO_MOSTRAR_MODAL);
 
       this.extensionTimeout = setTimeout(() => {
         if (!this.sessionExtended) {
-          console.log('⛔ Pasaron 2 minutos más sin extender sesión. Cerrando...');
           this.cerrarSesion();
         }
       }, this.TIEMPO_CERRAR_SESION);
@@ -84,7 +79,6 @@ export class SesionService {
     if (!this.modalOpen) {
       this.modalOpen = true;
       try {
-        console.log('🔔 Llamando a modal de expiración...');
         this.sesionModalService.openExpiracionSesionModal();
       } catch (error) {
         console.warn('⚠️ No se pudo abrir el modal:', error);
@@ -93,15 +87,14 @@ export class SesionService {
   }
 
   extenderSesion() {
-    console.log('🔄 Solicitando extensión de sesión...');
     const token = this.localStorageService.getItem('token');
 
     if (token) {
-      this.http.post<any>('https://mj5qrp25-3000.usw3.devtunnels.ms/usuarios/extender-sesion', {}, {
+      //this.http.post<any>('https://mj5qrp25-3000.usw3.devtunnels.ms/usuarios/extender-sesion', {}, {
+      this.http.post<any>('http://localhost:3000/usuarios/extender-sesion', {}, {
         headers: { Authorization: `Bearer ${token}` }
       }).subscribe({
         next: (response) => {
-          console.log('✅ Sesión extendida:', response);
           this.localStorageService.setItem('token', response.token);
 
           const tokenPayload = JSON.parse(atob(response.token.split('.')[1]));
@@ -123,7 +116,6 @@ export class SesionService {
   }
 
   cerrarSesion() {
-    console.log('🚪 Cerrando sesión...');
     this.localStorageService.clear();
     this.localStorageService.setItem('logoutReason', 'expirada'); // 👈 nuevo
 
@@ -137,7 +129,6 @@ export class SesionService {
   }
 
   redirectToLogin() {
-    console.log('🔁 Redirigiendo al login...');
     this.router.navigate(['/login']);
   }
 

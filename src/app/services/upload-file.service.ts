@@ -8,8 +8,8 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UploadFileService {
-  //private apiUrl = 'http://localhost:3000/expedientes';
-  private apiUrl = 'https://mj5qrp25-3000.usw3.devtunnels.ms/expedientes';
+  private apiUrl = 'http://localhost:3000/expedientes';
+  //private apiUrl = 'https://mj5qrp25-3000.usw3.devtunnels.ms/expedientes';
   
   constructor(private http: HttpClient, private router: Router) {}
 

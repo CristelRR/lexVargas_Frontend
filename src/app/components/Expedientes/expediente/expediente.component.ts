@@ -191,7 +191,7 @@ export class ExpedienteComponent implements OnInit {
   
     todasLasPartes.forEach(parte => {
       this.expedienteService.agregarParte(idExpedienteStr, parte).subscribe({
-        next: () => console.log(`Parte ${parte.tipoParte} guardada.`),
+        next: () => console.log(),
         error: (err) => console.error(`Error al guardar parte ${parte.tipoParte}:`, err),
       });
     });

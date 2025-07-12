@@ -15,13 +15,11 @@ export class ExpiracionSesionComponent {
   ) {}
 
   extenderSesion() {
-    console.log('Extender sesión...');
     this.sesionService.extenderSesion();
     this.dialogRef.close();  // Cerrar el modal después de extender la sesión
   }
 
   cerrarSesion() {
-    console.log('Cerrar sesión...');
     this.sesionService.cerrarSesion();
   }
 }

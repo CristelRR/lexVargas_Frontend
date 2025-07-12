@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:front-bufete": "node dist/front-bufete/server/server.mjs"
+    "serve:ssr:front-bufete": "node dist/front-bufete/server/server.mjs",
+    "audit": "npm audit --audit-level=moderate",
+  "audit-fix": "npm audit fix",
+  "update": "ncu -u && npm install"
   },
   "private": true,
   "dependencies": {
