@@ -1,24 +1,74 @@
 .error-page {
-    text-align: center;
-    margin-top: 100px;
-  }
-  
-  .error-page h1 {
-    font-size: 4rem;
-    color: #e74c3c;
-  }
-  
-  .error-page p {
-    font-size: 1.5rem;
-    color: #555;
-  }
-  
-  .btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.error-card {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.error-card .code {
+  font-size: 5rem;
+  color: #e74c3c;
+  margin: 0;
+}
+
+.error-card .titulo {
+  font-size: 1.8rem;
+  margin-top: 10px;
+  color: #2d3436;
+}
+
+.error-card p {
+  font-size: 1.1rem;
+  margin: 20px 0;
+  color: #636e72;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn.volver {
+  background-color: #3498db;
+  color: white;
+  border: none;
+}
+
+.btn.volver:hover {
+  background-color: #5dade2;
+}
+
+.btn.inicio {
+  background-color: #dfe6e9;
+  color: #2d3436;
+  border: none;
+}
+
+.btn.inicio:hover {
+  background-color: #b2bec3;
+}

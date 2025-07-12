@@ -1,7 +1,12 @@
 <div class="error-page">
-    <h1>403 - Forbidden</h1>
-    <p>No tienes permisos para acceder a esta página.</p>
-    <button (click)="volver()" class="btn btn-primary">Volver a la página anterior</button>
-    <a [routerLink]="['/home']" class="btn btn-secondary">Ir a la página de inicio</a>
+  <div class="error-card">
+    <h1 class="code">403</h1>
+    <h2 class="titulo">Acceso Denegado</h2>
+    <p>No tienes permisos para acceder a esta sección del sistema <strong>LexVargas Abogados</strong>.</p>
+
+    <div class="botones">
+      <button (click)="volver()" class="btn volver">⬅ Volver</button>
+      <a [routerLink]="['/home']" class="btn inicio">🏠 Ir al inicio</a>
+    </div>
   </div>
-  
+</div>
