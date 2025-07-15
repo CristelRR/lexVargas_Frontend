@@ -86,7 +86,6 @@ export class GestionPagoComponent implements OnInit, AfterViewInit {
           }
         },
         onError: (err: any) => {
-          console.error('Error:', err);
           // Cerrar el modal en caso de error
          
         
@@ -104,11 +103,9 @@ private obtenerMontoInicial(): number | null {
       if (typeof ultimoPago.montoRestante === 'number') {
         return ultimoPago.montoRestante;
     } else {
-        console.error("El último elemento de `this.pago` no tiene `montoRestante` definido como número.");
     }
 
   } else {
-      console.error("No hay elementos en `this.pago`.");
   }
   return null; // Indica que no se pudo obtener un monto inicial válido
 }
@@ -128,20 +125,17 @@ validarPago(): boolean {
 
   if (montoInicial <= 0) {
     this.isValidPayment = false;
-    console.error("El monto restante es 0 o menor. No se puede realizar el pago.");
     this.esCantidadValida = false;
     return false;
 }
 
   // Validar que la cantidad a pagar no sea mayor que el monto restante
   if (this.cantidadPago > montoInicial) {
-      console.error("La cantidad a pagar no puede ser mayor que el monto restante.");
       this.esCantidadValida = false;
       return false;
   }
 
   if (this.cantidadPago <= 0) {
-    console.error("La cantidad a pagar no puede ser mayor que el monto restante.");
     this.esCantidadValida = false;
     return false;
 }
@@ -183,7 +177,6 @@ pagarServicio() {
                   });
               },
               error: (error) => {
-                  console.error('Error al insertar el pago:', error);                 
                   Swal.fire({
                     title: 'Error',
                     text: 'El pago no se puede procesar debido a errores de validación.',
@@ -197,7 +190,6 @@ pagarServicio() {
           });
       }
   } else {
-      console.error("Validación de pago fallida. No se puede realizar el pago.");
   }
 }
 
@@ -225,7 +217,6 @@ cargando: boolean = false;
   },
       error: (error) => {
         this.cargando = false; 
-        console.error('Error al obtener los pagos:', error);
         this.errorMessage = 'Error al buscar el folio. Intenta nuevamente.';
         this.esFolio = false;
       }

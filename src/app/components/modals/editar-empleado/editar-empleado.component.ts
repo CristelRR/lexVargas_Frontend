@@ -49,7 +49,6 @@ export class EditarEmpleadoComponent implements OnInit {
       res => {
         this.especialidades = res;
       },
-      err => console.error('Error al cargar especialidades:', err)
     );
   }
 

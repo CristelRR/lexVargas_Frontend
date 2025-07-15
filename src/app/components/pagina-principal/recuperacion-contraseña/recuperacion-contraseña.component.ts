@@ -40,7 +40,6 @@ export class RecuperacionContraseñaComponent implements OnInit {
           this.recuperarForm.reset(); // Restablece el formulario
         },
         (error) => {
-          console.error('Error al enviar email:', error);
           this.openModal(this.errorModal);  // Abre el modal de error
         }
       );

@@ -12,7 +12,6 @@ export class CommandManager {
       try {
         command.execute();
       } catch (error) {
-        console.error('Error al ejecutar un comando:', error);
         break; // Detener la ejecución si un comando falla
       }
     }

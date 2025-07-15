@@ -82,7 +82,7 @@ export class PrincipalComponent implements OnInit {
     }
 
     citasContext.executeStrategy(userId)
-      .catch((error) => console.error('Error al cargar citas:', error))
+      .catch((error) =>  error)
       .finally(() => {
         this.loading = false;
       });
@@ -124,7 +124,6 @@ export class PrincipalComponent implements OnInit {
 
   atenderCita(idCita: number | undefined): void {
     if (idCita === undefined) {
-      console.error('El ID de la cita es indefinido.');
       return;
     }
 

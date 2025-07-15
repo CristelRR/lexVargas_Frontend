@@ -65,7 +65,6 @@ export class UploadFileService {
     return this.http.put(`${this.apiUrl}/${idExpediente}/proxima-audiencia`, { fecha })
         .pipe(
             catchError((error) => {
-                console.error('Error en actualizarProximaAudiencia:', error);
                 
                 if (error.status === 500 && error.error?.solution) {
                     // Mostrar mensaje más útil al usuario

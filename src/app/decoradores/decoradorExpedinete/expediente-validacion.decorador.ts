@@ -10,7 +10,6 @@ export class ExpedienteValidacionDecorator extends ExpedienteDecoradorBase {
   
       if (!expediente.numeroExpediente || !expediente.datosCliente.nombreCliente) {
         alert('Faltan datos obligatorios para crear el expediente.');
-        console.error('Validación fallida: Faltan campos obligatorios.');
         return;
       }
   

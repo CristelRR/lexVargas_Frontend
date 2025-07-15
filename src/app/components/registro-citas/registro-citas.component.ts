@@ -42,7 +42,6 @@ export class RegistroCitasComponent implements OnInit {
         this.expediente = data.find((exp: any) => exp.idExpediente === this.idExpediente);
       },
       error: (err) => {
-        console.error('Error al cargar expediente:', err);
       }
     });
   }
@@ -54,7 +53,6 @@ export class RegistroCitasComponent implements OnInit {
           this.citas = data;
         },
         error: (err) => {
-          console.error('Error al cargar citas:', err);
         }
       });
     }
@@ -70,7 +68,6 @@ export class RegistroCitasComponent implements OnInit {
           this.citaForm.reset({ estado: 'Pendiente', idExpediente: this.idExpediente }); // Resetear formulario
         },
         error: (err) => {
-          console.error('Error al crear cita:', err);
         }
       });
     }
@@ -84,7 +81,6 @@ export class RegistroCitasComponent implements OnInit {
           this.loadCitas(); // Recargar citas después de eliminar
         },
         error: (err) => {
-          console.error('Error al eliminar cita:', err);
         }
       });
     }

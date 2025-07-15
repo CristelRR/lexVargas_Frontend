@@ -66,14 +66,12 @@ export class UploadFileComponent implements ExpedienteComponent {
   cargarClientes(): void {
     this.clienteService.getClientes().subscribe(
       (data: Cliente[]) => { this.clientes = data; },
-      (error) => { console.error('Error al cargar clientes', error); }
     );
   }
 
   cargarAbogado(): void {
     this.empleadoService.getAbogado().subscribe(
       (data: Empleado[]) => { /* Asignar a la variable */ },
-      (error) => { console.error('Error al cargar abogados', error); }
     );
   }
 
@@ -83,11 +81,10 @@ export class UploadFileComponent implements ExpedienteComponent {
   }
 
   seleccionarAbogado(abogadoId: number | null): void {
-    if (abogadoId === null) { console.error('Abogado no seleccionado'); return; }
+    if (abogadoId === null) { ; return; }
     this.AbogadoSeleccionado = abogadoId;
   }
 
   crearExpediente(): void {
-    console.log('Crear expediente', this.expediente);
   }
 }

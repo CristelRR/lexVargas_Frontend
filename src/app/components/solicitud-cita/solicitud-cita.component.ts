@@ -75,7 +75,6 @@ export class SolicitudCitaComponent implements OnInit {
           this.cliente = res;
           this.fillClientData();
         },
-        err => console.log('Error al recuperar el cliente:', err)
       );
     }
   }
@@ -97,7 +96,6 @@ export class SolicitudCitaComponent implements OnInit {
       res => {
         this.servicioService.servicios = res;
       },
-      err => console.log(err)
     );
   }
 
@@ -115,7 +113,6 @@ export class SolicitudCitaComponent implements OnInit {
       this.fechasDisponibles = [];
       this.horasDisponibles = [];
     }, error => {
-      console.error('Error al cargar abogados:', error);
     });
   }
 
@@ -163,7 +160,6 @@ export class SolicitudCitaComponent implements OnInit {
           return { idAgenda: horario.idAgenda, rango: `${horaInicioFormateada} - ${horaFinFormateada}` };
         });
       }, error => {
-        console.error('Error al cargar los horarios:', error);
       });
     }
   }
@@ -238,7 +234,6 @@ export class SolicitudCitaComponent implements OnInit {
         
       },
       error: (err) => {
-        console.error('Error al crear la cita:', err);
         this.mensajeExito = 'Ocurrió un error al guardar la cita. Intenta nuevamente.';
       },
       complete: () => {

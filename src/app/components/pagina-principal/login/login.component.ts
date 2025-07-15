@@ -157,7 +157,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.show2FAVerification = true; // Muestra el formulario de OTP en la misma página
         },
         (error) => {
-          console.error('Error al iniciar sesión:', error);
           
           // Verifica si el error tiene un mensaje del servidor
           if (error.status === 401) {
@@ -181,7 +180,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if (this.errorModal) {
       this.modalService.open(this.errorModal); // Pasa 'this.errorModal' como argumento
     } else {
-      console.error('Error al intentar abrir el modal.');
     }
   }
 
@@ -193,7 +191,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.finalizarLogin(response);
       },
       (error) => {
-        console.error('Código incorrecto:', error);
         this.errorMessage = 'Código inválido o expirado. Intenta nuevamente.';
         this.openErrorModal(); // Abre el modal con el error
         this.twoFactorForm.reset(); // Reseteamos el formulario OTP

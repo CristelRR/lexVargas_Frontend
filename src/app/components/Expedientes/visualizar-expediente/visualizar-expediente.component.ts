@@ -101,7 +101,6 @@ export class VisualizarPdfComponent implements OnInit {
           expediente.nuevo = false;
         }
       } catch (e) {
-        console.error('Error al procesar fecha:', e);
         expediente.nuevo = false;
       }
     });
@@ -146,7 +145,6 @@ export class VisualizarPdfComponent implements OnInit {
   }, 1);
       }),
       catchError(error => {
-        console.error('Error al obtener expedientes:', error);
         this.errorCarga = true;
         this.mostrarErrorCarga();
         return of([]);
@@ -175,7 +173,6 @@ export class VisualizarPdfComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.error('Error al cargar audiencias:', error);
         this.mostrarAlerta('Error al cargar las audiencias', 'danger');
       }
     });
@@ -222,7 +219,6 @@ scrollToTop(): void {
         }, 15);
       }
     } catch (e) {
-      console.error('Error en scrollToTop:', e);
       // Fallback más básico
       window.scrollTo(0, 0);
     }
@@ -334,7 +330,6 @@ private mapearExpedientes(expedientes: any[]): any[] {
         }
       }
     } catch (e) {
-      console.error('Error al parsear datosAbogado:', e);
     }
 
     // Crear string legible para mostrar
@@ -359,7 +354,6 @@ private mapearExpedientes(expedientes: any[]): any[] {
           expediente.datosCliente;
       }
     } catch (e) {
-      console.error('Error al parsear datosCliente:', e);
     }
 
     const clienteDisplay = datosCliente.nombreCliente ? 
@@ -458,7 +452,6 @@ private mapearExpedientes(expedientes: any[]): any[] {
         this.mostrarAlerta('Expediente eliminado correctamente.', 'success');
       },
       error: (error) => {
-        console.error('Error al eliminar:', error);
         this.mostrarAlerta('Error al eliminar el expediente.', 'danger');
       }
     });
@@ -487,7 +480,6 @@ private mapearExpedientes(expedientes: any[]): any[] {
         this.mostrarAlerta('Audiencia actualizada correctamente.', 'success');
       },
       error: (error) => {
-        console.error('Error al actualizar:', error);
         this.mostrarAlerta('Error al programar la audiencia.', 'danger');
       }
     });
@@ -547,7 +539,6 @@ private mapearExpedientes(expedientes: any[]): any[] {
                 this.modalService.dismissAll();
             },
             error: (error) => {
-                console.error('Error al programar audiencia:', error);
                 this.mostrarAlerta('Error al programar la audiencia', 'danger');
             }
         });

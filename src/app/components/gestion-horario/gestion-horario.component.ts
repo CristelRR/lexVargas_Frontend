@@ -59,45 +59,35 @@ export class GestionHorarioComponent implements OnInit {
       res => {
         this.empleadoService.empleados = res;
       },
-      err => console.log(err)
     );
   }
 
   seleccionarFecha(dia: number): void {
     if (dia !== 0) {
       this.selectedFecha = new Date(this.anioActual, this.mesActual, dia);
-      console.log('Fecha seleccionada:', this.selectedFecha);
     }
   }
 
   abrirModal(): void {
-    console.log('Intentando abrir el modal...');
 
     // Verificar si hay un abogado seleccionado
     if (!this.selectedAbogado) {
-      console.log('No se ha seleccionado ningún abogado.');
       alert('Por favor, selecciona un abogado antes de abrir el modal.');
       return;
     } else {
-      console.log('Abogado seleccionado:', this.selectedAbogado); // Aquí se añade el console.log
     }
 
     // Verificar si la fecha seleccionada es válida
     if (this.selectedFecha) {
       const hoy = new Date();
       hoy.setHours(0, 0, 0, 0); // Establecer la hora a medianoche
-      console.log('Fecha seleccionada:', this.selectedFecha);
-      console.log('Fecha de hoy:', hoy);
-
+      
       if (this.selectedFecha < hoy) {
-        console.log('La fecha seleccionada es anterior a hoy.');
         alert('No se pueden agendar horas para fechas anteriores a hoy.');
         return; // No abrir el modal
       } else {
-        console.log('La fecha seleccionada es válida:', this.selectedFecha);
       }
     } else {
-      console.log('No se ha seleccionado ninguna fecha.');
     }
 
     const modalRef = this.modalService.open(SeleccionHorasComponent);
@@ -166,9 +156,6 @@ export class GestionHorarioComponent implements OnInit {
         const horaFinalISO = new Date(horaFinal.getTime() - (horaFinal.getTimezoneOffset() * 60000)).toISOString();
 
         // Agregar logs para verificar los valores
-        console.log(`Hora seleccionada: ${hora}`);
-        console.log(`Hora de inicio: ${horaInicioISO}, Hora de fin: ${horaFinalISO}`);
-
         return {
             horaInicio: horaInicioISO,
             horaFinal: horaFinalISO,
@@ -180,8 +167,6 @@ export class GestionHorarioComponent implements OnInit {
 
     agendaData.forEach(agenda => {
         this.agendaService.crearAgenda(agenda).subscribe(
-            res => console.log('Agenda creada:', res),
-            err => console.error('Error al crear agenda:', err)
         );
     });
 }

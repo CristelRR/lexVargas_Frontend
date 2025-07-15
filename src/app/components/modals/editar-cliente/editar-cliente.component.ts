@@ -51,7 +51,6 @@ export class EditarClienteComponent implements OnInit {
         this.cerrarModal.emit(); // ✅ Cerramos el modal
       },
       err => {
-        console.error('Error al actualizar cliente:', err);
         alert('Error al actualizar cliente: ' + err.message);
       }
     );

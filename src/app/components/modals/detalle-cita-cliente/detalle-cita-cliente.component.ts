@@ -35,7 +35,6 @@ export class DetalleCitaClienteComponent implements OnChanges {
       this.onCancelarCita.emit(this.cita.idCita); // Emitir el ID de la cita a cancelar
       this.closeModal(); // Cerrar el modal después de emitir el evento
     } else {
-      console.error("No se encontró el ID de la cita para cancelar"); // Log de error si no se encuentra el ID
     }
   }
 }

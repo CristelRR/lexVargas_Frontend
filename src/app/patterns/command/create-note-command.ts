@@ -10,8 +10,6 @@ export class CreateNoteCommand implements ICommand {
 
   execute(): void {
     this.notaService.crearNota(this.nota).subscribe({
-      next: (response) => console.log('Nota creada exitosamente:', response),
-      error: (err) => console.error('Error al crear la nota:', err),
     });
   }
 }

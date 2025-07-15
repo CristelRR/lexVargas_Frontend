@@ -43,7 +43,6 @@ export class OtpComponent implements OnInit {
       },
       (error) => {
         this.otpVerificationError = 'Código inválido o expirado. Intenta nuevamente.';
-        console.error('Código OTP incorrecto:', error);
         this.twoFactorForm.reset();
       }
     );

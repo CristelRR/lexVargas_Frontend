@@ -38,7 +38,6 @@ export class SecretariaCitasStrategy implements CitasStrategy<CitaAdaptada> {
       // Retorna las citas adaptadas
       return citasAdaptadas;
     } catch (error) {
-      console.error('Error al cargar citas para secretaria:', error);
       throw error;
     }
   }  

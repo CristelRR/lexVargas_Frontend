@@ -132,7 +132,6 @@ export class HistorialExpedienteComponent implements OnInit {
         this.expedientesFiltrados = [...this.expedientes];
       },
       (error: any) => {
-        console.error('Error al obtener los expedientes:', error);
       }
     );
   }

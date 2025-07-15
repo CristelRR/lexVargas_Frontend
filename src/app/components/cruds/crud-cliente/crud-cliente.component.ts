@@ -65,7 +65,7 @@ export class CrudClienteComponent implements OnInit {
         this.clientesFiltrados = [...this.clientes];
         this.calcularPaginas();
       },
-      (err) => console.error('Error al obtener clientes:', err)
+      (err) => err
     );
   }
 
@@ -165,7 +165,6 @@ export class CrudClienteComponent implements OnInit {
       (err) => {
         this.errorMessage = 'Error al crear cliente.';
         this.modalService.open(this.errorModal);
-        console.error('Error al crear cliente:', err);
       }
     );
   }
@@ -197,7 +196,6 @@ export class CrudClienteComponent implements OnInit {
       (err) => {
         this.errorMessage = 'Error al eliminar cliente.';
         this.modalService.open(this.errorModal);
-        console.error('Error al eliminar cliente:', err);
       }
     );
   }

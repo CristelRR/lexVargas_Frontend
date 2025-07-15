@@ -72,7 +72,6 @@ export class SesionService {
     if (!isPlatformBrowser(this.platformId)) return;
 
     if (!this.localStorageService.getItem('token')) {
-      console.warn('⛔ No hay sesión activa. No se muestra el modal.');
       return;
     }
 
@@ -81,7 +80,6 @@ export class SesionService {
       try {
         this.sesionModalService.openExpiracionSesionModal();
       } catch (error) {
-        console.warn('⚠️ No se pudo abrir el modal:', error);
       }
     }
   }
@@ -109,7 +107,6 @@ export class SesionService {
           this.iniciarVerificacion();
         },
         error: (err) => {
-          console.error('❌ Error al extender sesión:', err);
         }
       });
     }
@@ -158,13 +155,11 @@ export class SesionService {
     clearTimeout(this.actividadTimeout);
   
     this.actividadTimeout = setTimeout(() => {
-      console.warn('⚠️ Usuario inactivo. Mostrando modal...');
       this.pedirExtension();
   
       // ⏳ Da otros 2 minutos para responder o cerrar sesión
       this.extensionTimeout = setTimeout(() => {
         if (!this.sessionExtended) {
-          console.warn('⛔ No se respondió al modal tras inactividad. Cerrando sesión...');
           this.cerrarSesion();
         }
       }, 1 * 60 * 1000); // 2 minutos más
@@ -185,17 +180,14 @@ export class SesionService {
       const expMilis = nuevaExp < 9999999999 ? nuevaExp * 1000 : nuevaExp;
 
       if (Date.now() > expMilis) {
-        console.warn('🔄 Token expirado detectado en otra pestaña. Cerrando sesión...');
         this.cerrarSesion();
       } else {
-        console.info('🔁 Token actualizado desde otra pestaña. Reiniciando verificación...');
         this.verificacionActiva = false;
         this.iniciarVerificacion();
       }
     }
 
     if (event.key === 'token' && !event.newValue) {
-      console.warn('❌ Token eliminado desde otra pestaña. Cerrando sesión...');
       this.cerrarSesion();
     }
   }

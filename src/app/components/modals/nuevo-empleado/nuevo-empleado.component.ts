@@ -70,14 +70,12 @@ export class NuevoEmpleadoComponent implements OnInit {
   cargarEspecialidades() {
     this.especialidadService.getEspecialidades().subscribe(
       res => (this.especialidades = res),
-      err => console.error('Error al cargar especialidades:', err)
     );
   }
 
   cargarRoles() {
     this.rolService.getRoles().subscribe(
       res => (this.roles = res),
-      err => console.error('Error al cargar roles:', err)
     );
   }
 

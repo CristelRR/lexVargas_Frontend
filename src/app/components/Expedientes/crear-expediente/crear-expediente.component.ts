@@ -144,12 +144,10 @@ export class UploadFileComponent implements ExpedienteComponent{
           
         },
         (error) => {
-          console.error('Error al cargar abogado:', error);
           // Manejar el error adecuadamente
         }
       );
     } else {
-      console.error('No se encontró ID de usuario en localStorage');
     }
   }
 
@@ -170,7 +168,6 @@ export class UploadFileComponent implements ExpedienteComponent{
         this.cargando = false;
       },
       error: (err) => {
-        console.error(err);
         this.cargando = false;
         // Puedes mostrar un toast o mensaje flotante en lugar de usar el alert
       }
@@ -264,7 +261,6 @@ export class UploadFileComponent implements ExpedienteComponent{
         alert('Expediente eliminado correctamente');
       },
       error: (error) => {
-        console.error('Error al eliminar expediente:', error);
         alert('Error al eliminar el expediente');
       }
     });
@@ -276,7 +272,6 @@ export class UploadFileComponent implements ExpedienteComponent{
         this.Abogado = data;  // Almacenar los abogados obtenidos en la variable Abogado
       },
       (error) => {
-        console.error('Error al obtener los abogados', error);
       }
     );
   }
@@ -299,7 +294,6 @@ export class UploadFileComponent implements ExpedienteComponent{
         this.clientes = data;
       },
       (error) => {
-        console.error('Error al obtener los clientes', error);
       }
     );
   }
@@ -327,7 +321,6 @@ export class UploadFileComponent implements ExpedienteComponent{
           this.expediente.idClienteFK = data.idCliente;
         },
         (error) => {
-          console.error('Error al obtener los datos del cliente', error);
         }
       );
     }
@@ -360,7 +353,6 @@ export class UploadFileComponent implements ExpedienteComponent{
           this.expediente.numeroExpediente = `EXP-${this.expediente.idClienteFK}-${new Date().getFullYear()}`;
         },
         (error) => {
-          console.error('Error al obtener los datos del abogado', error);
         }
       );
     }
@@ -370,7 +362,6 @@ export class UploadFileComponent implements ExpedienteComponent{
 
   seleccionarAbogado(abogadoId: number | null): void {
     if (abogadoId === null) {
-      console.error("Abogado no seleccionado");
       return;
     }
     this.AbogadoSeleccionado = abogadoId;
@@ -383,7 +374,6 @@ export class UploadFileComponent implements ExpedienteComponent{
 
   seleccionarCliente(clienteId: number | null): void {
     if (clienteId === null) {
-      console.error("Cliente no seleccionado");
       return;
     }
     this.clienteSeleccionado = clienteId;
@@ -399,7 +389,6 @@ export class UploadFileComponent implements ExpedienteComponent{
     if (this.cargando) return;
   
     if (!this.expediente.idClienteFK || !this.expediente.idEmpleadoFK) {
-      console.error('Debe seleccionar un cliente y un abogado antes de crear el expediente.');
       return;
     }
   
@@ -424,7 +413,6 @@ export class UploadFileComponent implements ExpedienteComponent{
         this.cargando = false;
       },
       error: (err: any) => {
-        console.error('Error al crear el expediente:', err);
         this.cargando = false;
       }
     });

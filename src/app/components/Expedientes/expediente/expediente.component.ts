@@ -79,7 +79,6 @@ export class ExpedienteComponent implements OnInit {
   ngOnInit() {
   this.idExpediente = +this.activatedRoute.snapshot.paramMap.get('idExpediente')!;
   if (!this.idExpediente || isNaN(this.idExpediente)) {
-    console.error('ID de expediente no válido');
     return;
   }
   
@@ -146,7 +145,6 @@ export class ExpedienteComponent implements OnInit {
         this.getPartesRelacionadas();
       },
       error: (err) => {
-        console.error('Error al agregar parte:', err);
         alert(`Error al agregar parte: ${err.error?.message || err.message}`);
       }
     });
@@ -213,7 +211,6 @@ export class ExpedienteComponent implements OnInit {
         this.expediente = data;
       },
       (error) => {
-        console.error('Error al cargar expediente:', error);
         this.expediente = null;
       }
     );
@@ -348,7 +345,6 @@ export class ExpedienteComponent implements OnInit {
         this.resetearFormulario();
       },
       error: (err) => {
-        console.error('Error al subir los documentos:', err);
         alert('Error al subir los documentos. Por favor, intenta nuevamente.');
       },
     });
@@ -367,7 +363,6 @@ export class ExpedienteComponent implements OnInit {
           const modalRef = this.modalService.open(VerNotasModalComponent);
           modalRef.componentInstance.notas = notas; // Pasar la lista completa de notas
         } else {
-          console.warn('No hay notas asociadas a esta cita');
         }
       },
       (error) => console.error('Error al cargar las notas:', error)
@@ -381,7 +376,6 @@ export class ExpedienteComponent implements OnInit {
 
   abrirModalNuevaNota(idExpediente: number, idCita: number): void {
     if (!idExpediente || !idCita) {
-      console.error('Faltan parámetros obligatorios: idExpediente o idCita');
       return;
     }
 
@@ -408,10 +402,8 @@ export class ExpedienteComponent implements OnInit {
   crearNota(nota: Nota): void {
     this.notaService.crearNota(nota).subscribe({
       next: (response) => {
-        console.log('Nota creada exitosamente:', response);
       },
       error: (err) => {
-        console.error('Error al crear la nota:', err);
       },
     });
   }

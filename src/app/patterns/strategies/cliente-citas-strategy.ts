@@ -33,7 +33,6 @@ export class ClienteCitasStrategy implements CitasStrategy<CitaAdaptada> {
       // Retornar las citas adaptadas
       return citasAdaptadas;
     } catch (error) {
-      console.error('Error al cargar citas para cliente:', error);
       throw error;
     }
   }

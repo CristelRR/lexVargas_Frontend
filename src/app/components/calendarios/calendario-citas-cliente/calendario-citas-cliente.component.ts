@@ -93,7 +93,6 @@ export class CalendarioCitasClienteComponent implements OnInit {
       (res) => {
         this.servicios = res;
       },
-      (err) => console.error('Error al obtener servicios de las citas del cliente:', err)
     );
   }
 
@@ -205,7 +204,6 @@ export class CalendarioCitasClienteComponent implements OnInit {
         this.cancelarCita(idCita);
     });
     } else {
-      console.error('No se encontró la cita completa para el modal');
     }
   }
 
@@ -219,7 +217,6 @@ export class CalendarioCitasClienteComponent implements OnInit {
             this.getCitasByCliente(userId);
         },
         (error) => {
-            console.error('Error al cancelar la cita:', error);
         }
     );
   }

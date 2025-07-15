@@ -101,7 +101,6 @@ export class CalendarioCitasAbogadoComponent implements OnInit {
       (res) => {
         this.servicios = res;
       },
-      (err) => console.log('Error al obtener servicios por abogado:', err)
     );
   }
 
@@ -111,14 +110,12 @@ export class CalendarioCitasAbogadoComponent implements OnInit {
       (clientes) => {
         this.clientes = clientes.map(cliente => `${cliente.nombreCliente} ${cliente.aPCliente} ${cliente.aMCliente}`);
       },
-      (err) => console.log('Error al obtener clientes:', err)
     );
   }
 
   getCitasByAbogado(idAbogado: number): void {
     this.citaService.getCitasByAbogado(idAbogado).subscribe(
       (citas: FechaCita[]) => {
-        console.log('Citas recibidas:', citas); // Imprime todas las citas recibidas para inspección
         this.citas = citas.map((cita) => {
           const fecha = cita.fechaCita || cita.fechaAgenda;
           const parsedDate = fecha ? new Date(fecha) : null;
@@ -230,7 +227,6 @@ export class CalendarioCitasAbogadoComponent implements OnInit {
             this.cancelarCita(idCita);
         });
     } else {
-        console.error('No se encontró la cita completa para el modal');
     }
   }
 
@@ -244,7 +240,6 @@ export class CalendarioCitasAbogadoComponent implements OnInit {
             this.getCitasByAbogado(userId);
         },
         (error) => {
-            console.error('Error al cancelar la cita:', error);
         }
     );
   }

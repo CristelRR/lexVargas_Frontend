@@ -14,5 +14,4 @@ const expedienteArchivado = new ExpedienteArchivadoDecorator(expedienteConPriori
 try {
   expedienteArchivado.crearExpediente();
 } catch (error) {
-  console.error('Error en la ejecución:', error);
 }

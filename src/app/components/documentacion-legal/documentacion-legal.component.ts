@@ -115,7 +115,6 @@ export class DocumentacionLegalComponent {
         this.resetearFormulario();
       },
       error: (err) => {
-        console.error('Error al subir los documentos:', err);
         alert('Error al subir los documentos. Por favor, intenta nuevamente.');
       },
     });

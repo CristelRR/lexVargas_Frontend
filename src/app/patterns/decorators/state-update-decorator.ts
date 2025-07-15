@@ -18,7 +18,6 @@ export class StateUpdateDecorator extends Decorator {
         super.operation(idCita); // Llama al componente decorado
       },
       error: (error) => {
-        console.error(`Error al actualizar el estado de la cita con ID ${idCita}:`, error);
       },
     });
   }

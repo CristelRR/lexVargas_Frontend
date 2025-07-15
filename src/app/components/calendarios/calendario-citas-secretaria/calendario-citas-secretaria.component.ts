@@ -95,7 +95,6 @@ export class CalendarioCitasSecretariaComponent implements OnInit {
       (res) => {
         this.servicios = res;
       },
-      (err) => console.error('Error al cargar servicios:', err)
     );
   }
 
@@ -135,7 +134,6 @@ export class CalendarioCitasSecretariaComponent implements OnInit {
         });
         this.filtrarCitas();
       },
-      (err: any) => console.error('Error al obtener todas las citas:', err)
     );
   }
 
@@ -292,13 +290,12 @@ export class CalendarioCitasSecretariaComponent implements OnInit {
         this.cancelarCita(idCita);
       });
     } else {
-      console.error('No se encontró la cita completa para el modal');
     }
   }  
 
   cancelarCita(idCita: number): void {
     this.citaService.cancelarCita(idCita).subscribe(() => {
       this.getAllCitas();
-    }, (err) => console.error('Error al cancelar cita:', err));
+    }, (err) => err);
   }
 }

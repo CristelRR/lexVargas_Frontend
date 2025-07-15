@@ -11,7 +11,6 @@ export class RoleValidationDecorator extends Decorator {
 
   override operation(idCita: number): void {
     if (this.usuarioRol !== 2) { // Solo abogados (rol 2) pueden atender citas
-      console.warn('No tienes permiso para atender esta cita.');
       alert('Solo los abogados pueden atender citas.');
       return;
     }

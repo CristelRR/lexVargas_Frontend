@@ -99,7 +99,6 @@ export class GestionCitaComponent implements OnInit{
         this.calendarOptions.events = this.formatEvents();
       },
       (error) => {
-        console.error('Error al cargar las citas:', error);
       }
     );
   }

@@ -22,7 +22,6 @@ export class NotFoundComponent {
     // Usamos el servicio de historial para volver atrás
     this.navHistory.back('/home').then(success => {
       if (!success) {
-        console.warn('No se pudo volver a la página anterior');
       }
     });
   }

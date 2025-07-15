@@ -16,12 +16,10 @@ export class LocalStorageService {
     if (this.isBrowser()) {
       const value = localStorage.getItem(key);
       if (value === null) {
-        console.warn(`localStorage: No se encontró la clave "${key}".`);
       }
       return value;
     }
 
-    console.warn(`localStorage no está disponible. Devolviendo mockStorage para la clave: ${key}`);
     return this.mockStorage[key] || null;
   }
 
@@ -32,7 +30,6 @@ export class LocalStorageService {
     if (this.isBrowser()) {
       localStorage.setItem(key, valueToStore);
     } else {
-      console.warn(`localStorage no está disponible. Guardando en mockStorage la clave: ${key}`);
       this.mockStorage[key] = valueToStore;
     }
   }
@@ -42,7 +39,6 @@ export class LocalStorageService {
     if (this.isBrowser()) {
       localStorage.removeItem(key);
     } else {
-      console.warn(`localStorage no está disponible. Eliminando de mockStorage la clave: ${key}`);
       delete this.mockStorage[key];
     }
   }
