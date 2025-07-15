@@ -67,7 +67,7 @@ export class EditarEmpleadoComponent implements OnInit {
           }
         },
         err => {
-          console.error('Error al actualizar empleado:', err);
+
   
           const parent = window as any;
           if (parent.errorModalGlobal) {

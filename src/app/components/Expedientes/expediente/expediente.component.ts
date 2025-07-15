@@ -110,7 +110,7 @@ export class ExpedienteComponent implements OnInit {
         });
       },
       (error) => {
-        console.error('Error al obtener citas completadas:', error);
+
       }
     );
   }
@@ -207,7 +207,7 @@ export class ExpedienteComponent implements OnInit {
         if (data.estado) {
           data.estado = this.formatearEstado(data.estado);
         }
-        console.error('No se recibieron datos del expediente');
+
         this.expediente = data;
       },
       (error) => {
@@ -226,7 +226,7 @@ export class ExpedienteComponent implements OnInit {
           this.terceros = respuesta.terceros || [];
         },
         error: (error) => {
-          console.error('Error al cargar partes relacionadas:', error);
+
         }
       });
   }
@@ -424,7 +424,7 @@ export class ExpedienteComponent implements OnInit {
       this.expedienteSeleccionado.notas = notas;
     },
     (error) => {
-      console.error('Error al cargar las notas del expediente:', error);
+
     }
   );
 }

@@ -13,15 +13,14 @@ export class LocalStorageService {
 
   // Obtener elemento del localStorage o mockStorage
   getItem(key: string): string | null {
-    if (this.isBrowser()) {
-      const value = localStorage.getItem(key);
-      if (value === null) {
-      }
-      return value;
-    }
-
-    return this.mockStorage[key] || null;
+  if (this.isBrowser()) {
+    const value = localStorage.getItem(key);
+    return value ?? null; // Devuelve null si no existe, sin mostrar mensajes
   }
+
+  return this.mockStorage[key] ?? null;
+}
+
 
   // Guardar valor en localStorage o mockStorage
   setItem(key: string, value: string | object): void {

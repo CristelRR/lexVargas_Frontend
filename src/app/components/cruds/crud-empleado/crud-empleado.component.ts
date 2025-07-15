@@ -161,7 +161,7 @@ export class CrudEmpleadoComponent implements OnInit {
         setTimeout(() => this.modalService.dismissAll(), 3000);
       },
       err => {
-        console.error('Error al crear empleado:', err);
+
 
         if (
           err.status === 500 &&
